@@ -15,7 +15,7 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem('jwtToken');
-      const response = await axios.get('http://localhost:8080/productos', {
+      const response = await axios.get('apiunoigualados.up.railway.app/productos', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(response.data);

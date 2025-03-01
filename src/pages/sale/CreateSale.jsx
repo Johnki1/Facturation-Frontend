@@ -40,8 +40,8 @@ const CreateSale = () => {
       try {
         const token = localStorage.getItem("jwtToken");
         const [tablesResponse, productsResponse] = await Promise.all([
-          axios.get("http://localhost:8080/mesas", { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get("http://localhost:8080/productos", { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get("apiunoigualados.up.railway.app/mesas", { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get("apiunoigualados.up.railway.app/productos", { headers: { Authorization: `Bearer ${token}` } }),
         ]);
         setTables(tablesResponse.data);
         setProducts(productsResponse.data);
@@ -94,7 +94,7 @@ const CreateSale = () => {
     };
     try {
       const token = localStorage.getItem("jwtToken");
-      await axios.post("http://localhost:8080/ventas", formattedSale, {
+      await axios.post("apiunoigualados.up.railway.app/ventas", formattedSale, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNewSale({ tableId: "", detail: [], discount: 0 });

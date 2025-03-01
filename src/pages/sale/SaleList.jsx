@@ -53,7 +53,7 @@ const SaleList = () => {
 
   const fetchSales = async (start, end) => {
     try {
-      const response = await axios.get("http://localhost:8080/ventas/usuario", {
+      const response = await axios.get("apiunoigualados.up.railway.app/ventas/usuario", {
         params: {
           inicio: start || new Date().toISOString().slice(0, 16),
           fin: end || new Date().toISOString().slice(0, 16),
@@ -70,7 +70,7 @@ const SaleList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/productos", {
+      const response = await axios.get("apiunoigualados.up.railway.app/productos", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(response.data);
@@ -143,7 +143,7 @@ const SaleList = () => {
     if (selectedSaleForAdd && additionalProducts.length > 0) {
       try {
         await axios.put(
-          `http://localhost:8080/ventas/${selectedSaleForAdd.id}/agregarProductos`,
+          `apiunoigualados.up.railway.app/ventas/${selectedSaleForAdd.id}/agregarProductos`,
           { detail: additionalProducts },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -160,7 +160,7 @@ const SaleList = () => {
 
   const handleRemoveProduct = async (saleId, productoId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/ventas/${saleId}/producto/${productoId}`, {
+      const response = await axios.delete(`apiunoigualados.up.railway.app/ventas/${saleId}/producto/${productoId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSelectedSaleForView(response.data);
@@ -186,7 +186,7 @@ const SaleList = () => {
   const handleConfirmCompleteSale = async () => {
     try {
       await axios.put(
-        `http://localhost:8080/ventas/${saleToComplete.id}/completar`,
+        `apiunoigualados.up.railway.app/ventas/${saleToComplete.id}/completar`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -204,7 +204,7 @@ const SaleList = () => {
   const handleUpdateSale = async (updatedSale) => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/ventas/${updatedSale.id}/actualizar`,
+        `apiunoigualados.up.railway.app/ventas/${updatedSale.id}/actualizar`,
         {
           discount: updatedSale.discount,
           saleDetail: updatedSale.saleDetail,

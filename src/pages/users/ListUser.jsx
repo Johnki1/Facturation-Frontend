@@ -42,7 +42,7 @@ const ListUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/user/all", {
+      const response = await axios.get("apiunoigualados.up.railway.app/user/all", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data);
@@ -71,7 +71,7 @@ const ListUsers = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/user/${deleteUserId}`, {
+      await axios.delete(`apiunoigualados.up.railway.app/user/${deleteUserId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSuccessMessage("Usuario eliminado exitosamente.");
@@ -92,7 +92,7 @@ const ListUsers = () => {
   const handleUpdateUser = async () => {
     try {
       await axios.put(
-        `http://localhost:8080/user/${selectedUser.id}`,
+        `apiunoigualados.up.railway.app/user/${selectedUser.id}`,
         { password: updatePassword, role: updateRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );

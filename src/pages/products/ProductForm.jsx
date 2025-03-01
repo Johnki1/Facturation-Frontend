@@ -61,7 +61,7 @@ const ProductForm = () => {
       );
       formData.append("imagen", newProduct.image);
 
-      await axios.post("http://localhost:8080/productos", formData, {
+      await axios.post("apiunoigualados.up.railway.app/productos", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

@@ -45,7 +45,7 @@ const ProductCard = ({ product, onProductUpdated }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('jwtToken');
-      await axios.delete(`http://localhost:8080/productos/${product.id}`, {
+      await axios.delete(`apiunoigualados.up.railway.app/productos/${product.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       onProductUpdated();
@@ -81,7 +81,7 @@ const ProductCard = ({ product, onProductUpdated }) => {
         formData.append('imagen', newImage);
       }
 
-      await axios.put(`http://localhost:8080/productos/${product.id}`, formData, {
+      await axios.put(`apiunoigualados.up.railway.app/productos/${product.id}`, formData, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

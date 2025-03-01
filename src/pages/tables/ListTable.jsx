@@ -42,7 +42,7 @@ const ListTables = () => {
 
   const fetchTables = async () => {
     try {
-      const url = filter === "FREE" ? "http://localhost:8080/mesas/libres" : "http://localhost:8080/mesas";
+      const url = filter === "FREE" ? "apiunoigualados.up.railway.app/mesas/libres" : "apiunoigualados.up.railway.app/mesas";
       const response = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } });
       setTables(response.data);
     } catch (err) {
@@ -61,7 +61,7 @@ const ListTables = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/mesas/${deleteTableId}`, {
+      await axios.delete(`apiunoigualados.up.railway.app/mesas/${deleteTableId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccessMessage("Mesa eliminada exitosamente.");
@@ -81,7 +81,7 @@ const ListTables = () => {
   const handleUpdateTable = async () => {
     try {
       await axios.put(
-        `http://localhost:8080/mesas/${selectedTable.id}/estado`,
+        `apiunoigualados.up.railway.app/mesas/${selectedTable.id}/estado`,
         JSON.stringify(updateStatus),
         {
           headers: {

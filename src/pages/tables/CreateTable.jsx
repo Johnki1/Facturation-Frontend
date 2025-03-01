@@ -14,7 +14,7 @@ const CreateTable = () => {
     const token = localStorage.getItem("jwtToken");
     try {
       await axios.post(
-        "http://localhost:8080/mesas",
+        "apiunoigualados.up.railway.app/mesas",
         { numero: tableNumber, estado: "LIBRE" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

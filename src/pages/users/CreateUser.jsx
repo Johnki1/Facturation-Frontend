@@ -27,7 +27,7 @@ const CreateUser = () => {
     const token = localStorage.getItem("jwtToken");
     try {
       await axios.post(
-        "http://localhost:8080/user/register",
+        "apiunoigualados.up.railway.app/user/register",
         { username, password, rol: role },
         { headers: { Authorization: `Bearer ${token}` } }
       );
