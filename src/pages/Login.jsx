@@ -49,6 +49,11 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
+          InputProps={{
+            inputProps: {
+              autoComplete: "current-password",
+            },
+          }}
         />
         {error && (
           <Alert severity="error" sx={{ mt: 2 }}>
