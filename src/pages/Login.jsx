@@ -39,6 +39,11 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           disabled={loading}
+          InputProps={{
+            inputProps: {
+              autoComplete: "username",
+            },
+          }}
         />
         <TextField
           label="Contraseña"
