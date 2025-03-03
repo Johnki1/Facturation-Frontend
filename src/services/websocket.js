@@ -1,6 +1,6 @@
 import { Client } from '@stomp/stompjs';
 
-const SOCKET_URL = 'wss://apiunoigualados.up.railway.app/wss';
+const SOCKET_URL = 'wss://apiunoigualados.up.railway.app/ws';
 
 let client = null;
 

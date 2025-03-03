@@ -3,7 +3,7 @@ import { Container, Typography, Grid, Paper, Snackbar, Alert } from '@mui/materi
 import axios from 'axios';
 import websocket from '../services/websocket';
 
-const API_URL = 'apiunoigualados.up.railway.app';
+const API_URL = 'https://apiunoigualados.up.railway.app';
 
 const getAuthToken = () => localStorage.getItem('jwtToken');
 

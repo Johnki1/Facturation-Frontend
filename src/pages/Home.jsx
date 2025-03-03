@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <Container>
       <Typography variant="h2" gutterBottom sx={{ color: 'var(--text-color)' }}>
-        UnoIgualADos 
+        MejorSonDosQueUno
       </Typography>
       <Typography variant="body1" paragraph sx={{ color: 'var(--text-color)' }}>
         disfruta de lo mejor
