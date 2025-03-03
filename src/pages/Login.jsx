@@ -17,6 +17,7 @@ const Login = () => {
 
     try {
       await authService.login(username, password);
+      console.log("Autenticación exitosa, redirigiendo a /dashboard");
       navigate("/dashboard");
     } catch (error) {
       setError(error.message);
@@ -81,3 +82,4 @@ const Login = () => {
 };
 
 export default Login;
+
