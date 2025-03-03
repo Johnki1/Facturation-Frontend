@@ -94,7 +94,7 @@ const CreateSale = () => {
     };
     try {
       const token = localStorage.getItem("jwtToken");
-      await axios.post("apiunoigualados.up.railway.app/ventas", formattedSale, {
+      await axios.post("https://apiunoigualados.up.railway.app/ventas", formattedSale, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNewSale({ tableId: "", detail: [], discount: 0 });
