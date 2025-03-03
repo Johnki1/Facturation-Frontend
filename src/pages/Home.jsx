@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Container, Typography, Button, Box, Grid, Paper, Modal } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Document, Page, pdfjs } from "react-pdf";
 import { RestaurantMenu, Favorite, People } from "@mui/icons-material";
+
+// Configura el worker de PDF.js
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 // Styled components
 const QuoteCard = styled(Paper)(({ theme }) => ({
@@ -43,6 +47,7 @@ const HeroSection = styled(Box)(({ theme }) => ({
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [numPages, setNumPages] = useState(null);
 
   const quotes = [
     {
@@ -74,6 +79,11 @@ const Home = () => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  // Manejo de la carga del documento PDF
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
   };
 
   return (
@@ -264,7 +274,7 @@ const Home = () => {
         </Box>
       </Container>
 
-      {/* Modal para mostrar el PDF */}
+      {/* Modal para renderizar el PDF usando react-pdf */}
       <Modal open={openModal} onClose={handleCloseModal}>
         <Box
           sx={{
@@ -277,15 +287,18 @@ const Home = () => {
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 2,
+            overflowY: "auto",
           }}
         >
-          <iframe
-            src="/menu.pdf"
-            title="Menú"
-            width="100%"
-            height="100%"
-            style={{ border: "none" }}
-          />
+          <Document file="/menu.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+            {Array.from(new Array(numPages), (el, index) => (
+              <Page
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                width={window.innerWidth * 0.8}
+              />
+            ))}
+          </Document>
         </Box>
       </Modal>
     </Box>
