@@ -20,8 +20,8 @@ const ProductFilters = ({ products, setFilteredProducts }) => {
         <MenuItem value="">Todas</MenuItem>
         <MenuItem value="FRIO">Frío</MenuItem>
         <MenuItem value="CALIENTE">Caliente</MenuItem>
-        <menuitem value="ADICIONES">Adiciones</menuitem>
-        <menuitem value ="BEBIDAS">Bebidas </menuitem>
+        <menuItem value="ADICIONES">Adiciones</menuItem>
+        <menuItem value ="BEBIDAS">Bebidas </menuItem>
       </Select>
       <Button variant="contained" onClick={handleFilter}>Filtrar</Button>
     </FormControl>
