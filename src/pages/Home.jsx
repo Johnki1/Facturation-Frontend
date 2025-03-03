@@ -1,6 +1,7 @@
-import { Container, Typography, Button, Box, Grid, Paper } from "@mui/material"
-import { styled } from "@mui/material/styles"
-import { RestaurantMenu, Favorite, People } from "@mui/icons-material"
+import { useState } from "react";
+import { Container, Typography, Button, Box, Grid, Paper, Modal } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { RestaurantMenu, Favorite, People } from "@mui/icons-material";
 
 // Styled components
 const QuoteCard = styled(Paper)(({ theme }) => ({
@@ -18,7 +19,7 @@ const QuoteCard = styled(Paper)(({ theme }) => ({
   "&:hover": {
     transform: "translateY(-5px)",
   },
-}))
+}));
 
 const StyledButton = styled(Button)(() => ({
   borderRadius: "30px",
@@ -31,16 +32,18 @@ const StyledButton = styled(Button)(() => ({
     transform: "translateY(-3px)",
     boxShadow: "0 6px 25px rgba(255, 87, 34, 0.4)",
   },
-}))
+}));
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: "linear-gradient(135deg, #ffe8cc 0%, #fff6e5 100%)",
   padding: theme.spacing(10, 0),
   borderRadius: "0 0 30% 30% / 10%",
   marginBottom: theme.spacing(6),
-}))
+}));
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const quotes = [
     {
       text: "Mejor son dos que uno, porque tienen mejor paga de su trabajo.",
@@ -62,10 +65,15 @@ const Home = () => {
       source: "Mateo 22:39",
       icon: <Favorite fontSize="large" color="secondary" />,
     },
-  ]
+  ];
 
-  const handleOpenPDF =()=>{
-    window.open('/menu.pdf','_blank');
+  // Funciones para abrir y cerrar el modal
+  const handleOpenPDF = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -130,7 +138,9 @@ const Home = () => {
                   }}
                 >
                   <QuoteCard elevation={3}>
-                    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>{quote.icon}</Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+                      {quote.icon}
+                    </Box>
                     <Typography
                       variant="h6"
                       align="center"
@@ -229,7 +239,14 @@ const Home = () => {
               transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
             }}
           >
-            <StyledButton onClick={handleOpenPDF} variant="contained" color="primary" size="large" endIcon={<RestaurantMenu />} sx={{ mb: 2 }}>
+            <StyledButton
+              onClick={handleOpenPDF}
+              variant="contained"
+              color="primary"
+              size="large"
+              endIcon={<RestaurantMenu />}
+              sx={{ mb: 2 }}
+            >
               Ver Nuestro Menú
             </StyledButton>
           </Box>
@@ -246,8 +263,33 @@ const Home = () => {
           </Box>
         </Box>
       </Container>
-    </Box>
-  )
-}
 
-export default Home
+      {/* Modal para mostrar el PDF */}
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "90%",
+            height: "90%",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 2,
+          }}
+        >
+          <iframe
+            src="/menu.pdf"
+            title="Menú"
+            width="100%"
+            height="100%"
+            style={{ border: "none" }}
+          />
+        </Box>
+      </Modal>
+    </Box>
+  );
+};
+
+export default Home;
