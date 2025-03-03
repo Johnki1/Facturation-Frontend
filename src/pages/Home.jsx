@@ -86,7 +86,7 @@ const Home = () => {
                 mb: 3,
               }}
             >
-              MejorSonDosQueUno
+              Mejor Son Dos Que Uno
             </Typography>
           </Box>
 
