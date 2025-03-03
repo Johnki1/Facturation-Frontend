@@ -129,6 +129,8 @@ const ProductForm = () => {
             >
               <MenuItem value="FRIO">Frío</MenuItem>
               <MenuItem value="CALIENTE">Caliente</MenuItem>
+              <MenuItem value="ADICIONES">Adiciones</MenuItem>
+              <MenuItem value="BEBIDAS">Bebidas</MenuItem>
             </Select>
           </FormControl>
           <TextField
