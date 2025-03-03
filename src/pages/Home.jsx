@@ -1,11 +1,6 @@
-import { useState } from "react";
-import { Container, Typography, Button, Box, Grid, Paper, Modal } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Document, Page, pdfjs } from "react-pdf";
-import { RestaurantMenu, Favorite, People } from "@mui/icons-material";
-
-// Configura el worker de PDF.js
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import { Container, Typography, Button, Box, Grid, Paper } from "@mui/material"
+import { styled } from "@mui/material/styles"
+import { RestaurantMenu, Favorite, People } from "@mui/icons-material"
 
 // Styled components
 const QuoteCard = styled(Paper)(({ theme }) => ({
@@ -23,7 +18,7 @@ const QuoteCard = styled(Paper)(({ theme }) => ({
   "&:hover": {
     transform: "translateY(-5px)",
   },
-}));
+}))
 
 const StyledButton = styled(Button)(() => ({
   borderRadius: "30px",
@@ -36,19 +31,16 @@ const StyledButton = styled(Button)(() => ({
     transform: "translateY(-3px)",
     boxShadow: "0 6px 25px rgba(255, 87, 34, 0.4)",
   },
-}));
+}))
 
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: "linear-gradient(135deg, #ffe8cc 0%, #fff6e5 100%)",
   padding: theme.spacing(10, 0),
   borderRadius: "0 0 30% 30% / 10%",
   marginBottom: theme.spacing(6),
-}));
+}))
 
 const Home = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [numPages, setNumPages] = useState(null);
-
   const quotes = [
     {
       text: "Mejor son dos que uno, porque tienen mejor paga de su trabajo.",
@@ -70,20 +62,10 @@ const Home = () => {
       source: "Mateo 22:39",
       icon: <Favorite fontSize="large" color="secondary" />,
     },
-  ];
+  ]
 
-  // Funciones para abrir y cerrar el modal
-  const handleOpenPDF = () => {
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  // Manejo de la carga del documento PDF
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
+  const handleOpenPDF =()=>{
+    window.open('/menu.pdf','_blank');
   };
 
   return (
@@ -148,9 +130,7 @@ const Home = () => {
                   }}
                 >
                   <QuoteCard elevation={3}>
-                    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-                      {quote.icon}
-                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>{quote.icon}</Box>
                     <Typography
                       variant="h6"
                       align="center"
@@ -249,14 +229,7 @@ const Home = () => {
               transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
             }}
           >
-            <StyledButton
-              onClick={handleOpenPDF}
-              variant="contained"
-              color="primary"
-              size="large"
-              endIcon={<RestaurantMenu />}
-              sx={{ mb: 2 }}
-            >
+            <StyledButton onClick={handleOpenPDF} variant="contained" color="primary" size="large" endIcon={<RestaurantMenu />} sx={{ mb: 2 }}>
               Ver Nuestro Menú
             </StyledButton>
           </Box>
@@ -273,36 +246,8 @@ const Home = () => {
           </Box>
         </Box>
       </Container>
-
-      {/* Modal para renderizar el PDF usando react-pdf */}
-      <Modal open={openModal} onClose={handleCloseModal}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "90%",
-            height: "90%",
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 2,
-            overflowY: "auto",
-          }}
-        >
-          <Document file="/menu.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-            {Array.from(new Array(numPages), (el, index) => (
-              <Page
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                width={window.innerWidth * 0.8}
-              />
-            ))}
-          </Document>
-        </Box>
-      </Modal>
     </Box>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
