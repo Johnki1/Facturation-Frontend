@@ -64,6 +64,10 @@ const Home = () => {
     },
   ]
 
+  const handleOpenPDF =()=>{
+    window.open('/menu.pdf','_blank');
+  };
+
   return (
     <Box sx={{ overflow: "hidden" }}>
       <HeroSection>
@@ -225,7 +229,7 @@ const Home = () => {
               transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
             }}
           >
-            <StyledButton variant="contained" color="primary" size="large" endIcon={<RestaurantMenu />} sx={{ mb: 2 }}>
+            <StyledButton onClick={handleOpenPDF} variant="contained" color="primary" size="large" endIcon={<RestaurantMenu />} sx={{ mb: 2 }}>
               Ver Nuestro Menú
             </StyledButton>
           </Box>
