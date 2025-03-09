@@ -182,6 +182,7 @@ const CreateSale = () => {
               <MenuItem value="CALIENTE">Caliente</MenuItem>
               <MenuItem value="FRIO">Frío</MenuItem>
               <MenuItem value="ADICIONES">Adiciones</MenuItem>
+              <MenuItem value="BEBIDAS">Bebidas</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={2}>
